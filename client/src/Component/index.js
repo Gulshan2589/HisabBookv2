@@ -11,3 +11,5 @@ export {default as Form} from '../Component/Speechly/Main/Form/Form';
 export {default as Analtics} from '../Component/Dashboard/Analatics';
 export {default as Dashboard1} from '../Component/Dashboard1/Dashboard1';
 export {default as Modelpopup} from '../Component/Dashboard1/Modelpopup';
+export {default as Facereg} from './Auth/Facereg';
+export {default as Facelog} from './Auth/Facelog';

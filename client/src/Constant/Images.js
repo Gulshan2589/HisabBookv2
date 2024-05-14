@@ -2,6 +2,8 @@
 // name for better code useability without give large src
 import logo from '../Assets/img/HisaabBook.png';
 
-export default {
+const images ={
   logo
-};
+}
+
+export default images;

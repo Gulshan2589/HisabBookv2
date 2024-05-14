@@ -20,7 +20,7 @@ const initialState = {
     date: formateDate(new Date()),
 };
 
-const Form = ({ setShowAddEditTransactionModal }) => {
+const Form = () => {
     const { segment } = useSpeechContext();
     const classes = useStyles();
     const [formData, setFormData] = useState(initialState);

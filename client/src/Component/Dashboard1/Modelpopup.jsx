@@ -14,10 +14,11 @@ import Spinner from '../Auth/spinner';
 import { ExpenseTrackerContext } from '../../Context/Context';
 import formateDate from '../../Utils/formateDate';
 import { useSpeechContext } from '@speechly/react-client';
-import {
-    PushToTalkButton,
-    PushToTalkButtonContainer
-} from "@speechly/react-ui";//import speechly Ui 
+import moment from "moment";
+// import {
+//     PushToTalkButton,
+//     PushToTalkButtonContainer
+// } from "@speechly/react-ui";//import speechly Ui 
 
 //initial state of form
 const initialState = {
@@ -32,7 +33,7 @@ const initialState = {
 //the Modelpopup function call when click on add new button 
 //and passing the props of dashbord1 component
 const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModal,
-    selectedItemForEdit, setSelectedItemForEdit, getTransactions}) => {
+    selectedItemForEdit, setSelectedItemForEdit, getTransactions }) => {
     //defining constant using useState, usStyles, useContext hooks
     const classes = useStyles();
     const { segment } = useSpeechContext();
@@ -40,7 +41,24 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
     // Define a constant to determine the categories based on the selected type
     const selectedCategories = formData.type === "Income" ? incomeCategories : expenseCategories;
     const [loading, setLoading] = useState(false);
-    const { addTransaction , balance} = useContext(ExpenseTrackerContext);
+    const { addTransaction, balance } = useContext(ExpenseTrackerContext);
+    
+    useEffect(() => {
+        if (selectedItemForEdit) {
+            console.log('Setting formData for editing:', selectedItemForEdit);
+            setFormData({
+                amount: selectedItemForEdit.amount.toString(),
+                category: selectedItemForEdit.category,
+                type: selectedItemForEdit.type,
+                date: moment(selectedItemForEdit.date).format("YYYY-MM-DD"),
+                reference: selectedItemForEdit.reference,
+                description: selectedItemForEdit.description,
+            });
+        } else {
+            console.log('Setting formData with initialState');
+            setFormData(initialState);
+        }
+    }, [selectedItemForEdit]);
 
     //onFinish function when Create button clicked
     const onFinish = async () => {
@@ -66,17 +84,17 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                 await axios.post('/api/transaction/addtransaction', { ...transaction, UserId: user._id });
                 message.success("Transaction added successfully");
                 //adding transcation to context api
-                addTransaction({...transaction, amount: Number(formData.amount), id: uuidv4() });
+                addTransaction({ ...transaction, amount: Number(formData.amount), id: uuidv4() });
                 getTransactions();
             }
             //setting the transactionModal state to false
             setShowAddEditTransactionModal(false);
             setSelectedItemForEdit(null);
             //setting the loading state to false
-            
+
             //catching error if any exception
         } catch (error) {
-            
+
             message.error('something went wrong');
         } finally {
             setLoading(false);
@@ -132,12 +150,12 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                 }
             });
         }
-    }, [segment]);
+    }, [segment, formData]);
 
     return (
         //antd modal popup 
         <Modal title={selectedItemForEdit ? "Edit Transaction" : "Add Transcation"}
-         open={showAddEditTransactionModal}
+            open={showAddEditTransactionModal}
             onCancel={() => setShowAddEditTransactionModal(false)}
             footer={false}>
             {/* card with classname root */}
@@ -149,7 +167,7 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                     <Typography align="center" variant="h5">Total Balance ₹{balance}</Typography>
                     <Typography style={{ lineheight: '2em', marginTop: '20px' }}>
                         {/* for additional information */}
-                       
+
                         <InfoCard />
                     </Typography>
                     <Divider className={classes.divider} />
@@ -165,7 +183,8 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                             <FormControl fullWidth>
                                 <InputLabel >Type</InputLabel>
                                 <Select value={formData.type} onChange={(e) => setFormData({
-                                     ...formData, type: e.target.value })}>
+                                    ...formData, type: e.target.value
+                                })}>
                                     <MenuItem value="Income">Income</MenuItem>
                                     <MenuItem value="Expense">Expense</MenuItem>
                                 </Select>
@@ -175,17 +194,18 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                         <Grid item xs={6}>
                             <FormControl fullWidth>
                                 <InputLabel>Category</InputLabel>
-                                <Select value={formData.category} onChange={(e) => setFormData({ 
-                                    ...formData, category: e.target.value })}>
-                                    {selectedCategories.map((c) => <MenuItem key={c.type} 
-                                    value={c.type}>{c.type}</MenuItem>)}
+                                <Select value={formData.category} onChange={(e) => setFormData({
+                                    ...formData, category: e.target.value
+                                })}>
+                                    {selectedCategories.map((c) => <MenuItem key={c.type}
+                                        value={c.type}>{c.type}</MenuItem>)}
                                 </Select>
                             </FormControl>
                         </Grid>
                         {/* A grid item for entering the amount of the transaction */}
                         <Grid item xs={6}>
                             <TextField type="number" label="Amount" fullWidth value={
-                            formData.amount} onChange={ (e) => setFormData({ ...formData, amount: e.target.value })} />
+                                formData.amount} onChange={(e) => setFormData({ ...formData, amount: e.target.value })} />
                         </Grid>
                         {/* A grid item for selecting the date of the transaction */}
                         <Grid item xs={6}>
@@ -197,22 +217,24 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                             <InputLabel >Reference</InputLabel>
                             <TextField type="text" fullWidth
                                 value={formData.reference} onChange={(e) => setFormData({
-                                     ...formData, reference: e.target.value })} />
+                                    ...formData, reference: e.target.value
+                                })} />
                         </Grid>
                         {/* A grid item for entering the Description of the transaction */}
                         <Grid item xs={6}>
                             <InputLabel>Description</InputLabel>
                             <TextField type="text" fullWidth
                                 value={formData.description} onChange={(e) => setFormData({
-                                     ...formData, description: e.target.value })} />
+                                    ...formData, description: e.target.value
+                                })} />
                         </Grid>
                         {/* button for submiting data */}
                         <Button className={classes.button} variant="outlined" color="primary"
-                            onFinish fullWidth onClick={onFinish}>{selectedItemForEdit ?"Save":"Create"}</Button>
+                            fullWidth onClick={onFinish}>{selectedItemForEdit ? "Save" : "Create"}</Button>
                         {/* Speechly PushToTalkButton for voice input */}
-                        <PushToTalkButtonContainer>
+                        {/* <PushToTalkButtonContainer>
                             <PushToTalkButton />
-                        </PushToTalkButtonContainer>
+                        </PushToTalkButtonContainer> */}
                     </Grid>
                 </CardContent >
             </Card>

@@ -10,8 +10,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //rendering the root to our App component
 root.render(
     <Provider>
-    <SpeechProvider appId="3c4caa52-929e-4a80-94f2-8740ec8bdb32">
+    {/* <SpeechProvider appId="3c4caa52-929e-4a80-94f2-8740ec8bdb32"> */}
         <App />
-    </SpeechProvider>
+    {/* </SpeechProvider> */}
     </Provider>,
 );

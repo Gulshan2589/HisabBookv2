@@ -1,4 +1,8 @@
 const express = require('express')
+const app = express();
+
+// Define routes here
+
 const User = require('../models/User')
 const router = express.Router()
 
@@ -17,7 +21,6 @@ router.post('/login', async function (req, res) {
 })
 
 router.post('/register', async function (req, res) {
-    const result = await User.findOne({ email: req.body.email, password: req.body.password })
     try {
         const newuser = new User(req.body);
         await newuser.save();

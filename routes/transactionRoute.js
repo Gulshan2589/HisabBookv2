@@ -35,7 +35,7 @@ router.post("/delete-transaction", async function (req, res) {
   try {
     // Find the transaction with the given ID and delete it from the database
     await Transaction.findOneAndDelete({ _id: req.body.transactionId })
-    res.send("Transaction Updated Successfully");
+    res.send("Transaction deleted Successfully");
   } catch (error) {
     res.status(500).json(error);
   }

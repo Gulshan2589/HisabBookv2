@@ -19,13 +19,15 @@ function Navbar() {
                     <img src={Images.logo} alt="app__logo" />
                 </div>
                 <ul className="app__navbar-links">
-                    <li><NavLink to="/">Home</NavLink></li>
-                    <li><NavLink to="/dashboard">Dashboard</NavLink></li>
-                    <li><NavLink to="/about">Pi-Chart</NavLink></li>
-                    <li><NavLink to="/contact">Contact</NavLink></li>
+                    <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
+                    <li><NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink></li>
+                    <li><NavLink activeClassName="active" to="/about">Pi-Chart</NavLink></li>
+                    <li><NavLink activeClassName="active" to="/contact">Contact</NavLink></li>
+                    <li><NavLink activeClassName="active" to="/facereg">FaceRegister</NavLink></li>
+                    <li><NavLink activeClassName="active" to="/facelog">FaceLogin</NavLink></li>
                 </ul>
                 <div className='username'>
-                    {!user ? <h6 className='username'></h6> : <h6 className='username'>{user.name}</h6>}
+                    {!user ? <p className='username1'></p> : <p className='username1'>{user.name}</p>}
                     <AiOutlineLogout className='logout' onClick={() => {
                         localStorage.removeItem('HisabbookUser');
                         navigate("/login");
@@ -41,7 +43,7 @@ function Navbar() {
                                     setToggleMenu(false);
                                     navigate("/login");
                                 }}>Log Out</BiLogOut>
-                                {!user ? <h6 className='username-small'></h6> : <h6 className='username-small'>{user.name}</h6>}
+                                {!user ? <p className='username-small'></p> : <p className='username-small'>{user.name}</p>}
                             </div>
                             <MdClose fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
                             <ul className="app__navbar-smallscreen_links">
@@ -49,6 +51,8 @@ function Navbar() {
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/dashboard">Dashboard</NavLink></li>
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/about">Pi-Chart</NavLink></li>
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/contact">Contact</NavLink></li>
+                                <li onClick={() => setToggleMenu(false)}><NavLink to="/facereg">FaceRegister</NavLink></li>
+                                <li onClick={() => setToggleMenu(false)}><NavLink to="/facelog">FaceLogin</NavLink></li>
                             </ul>
                         </div>
                     )}

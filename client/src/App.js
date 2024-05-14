@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { Navbar, Hero, Analtics, Dashboard1, Contact, Register, Login } from './Component';
+import { Navbar, Hero, Analtics, Dashboard1, Contact, Register, Login, Facelog, Facereg} from './Component';
 import { Route, Routes, BrowserRouter, useNavigate } from "react-router-dom";
+
 
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
           <Route path='/dashboard' element={<ProtectedRoute><Dashboard1 /></ProtectedRoute>} />
           <Route path='/about' element={<ProtectedRoute><Analtics /></ProtectedRoute>} />
           <Route path='/contact' element={<ProtectedRoute><Contact /></ProtectedRoute>} />
+          <Route path='/facereg' element={<ProtectedRoute><Facereg /></ProtectedRoute>} />
+          <Route path='/facelog' element={<ProtectedRoute><Facelog /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </div>
