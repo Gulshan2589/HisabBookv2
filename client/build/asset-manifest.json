@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.617c2330.css",
-    "main.js": "/static/js/main.ff716e0e.js",
+    "main.css": "/static/css/main.47b68180.css",
+    "main.js": "/static/js/main.c88b8c87.js",
     "static/media/HisaabBook.png": "/static/media/HisaabBook.ca7d2fc0e70e0957fbbc.png",
     "index.html": "/index.html",
-    "main.617c2330.css.map": "/static/css/main.617c2330.css.map",
-    "main.ff716e0e.js.map": "/static/js/main.ff716e0e.js.map"
+    "main.47b68180.css.map": "/static/css/main.47b68180.css.map",
+    "main.c88b8c87.js.map": "/static/js/main.c88b8c87.js.map"
   },
   "entrypoints": [
-    "static/css/main.617c2330.css",
-    "static/js/main.ff716e0e.js"
+    "static/css/main.47b68180.css",
+    "static/js/main.c88b8c87.js"
   ]
 }
