@@ -1,4 +1,3 @@
-// src/components/FacialRegistration.js
 import React, { useState, useRef, useEffect } from 'react';
 import Webcam from 'react-webcam';
 import * as faceapi from 'face-api.js';
@@ -18,9 +17,9 @@ const Facereg = () => {
       try {
         await Promise.all([
           faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
-          faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
-          faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
-          faceapi.nets.ssdMobilenetv1.loadFromUri('./models'),
+          faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+          faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+          faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
         ]);
 
         setAreModelsLoaded(true);
@@ -48,7 +47,7 @@ const Facereg = () => {
       const detection = await faceapi
         .detectSingleFace(img)
         .withFaceLandmarks()
-        .withFaceDescriptor()
+        .withFaceDescriptor();
 
       if (detection) {
         setDetectionData(detection.descriptor);

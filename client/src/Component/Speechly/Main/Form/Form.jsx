@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import { TextField, Typography, Grid, Button, FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import useStyles from './styles';
 import { useSpeechContext } from '@speechly/react-client';
-import { ExpenseTrackerContext } from '../../../../Context/Context';
+//import { ExpenseTrackerContext } from '../../../../Context/Context';
 import { message } from "antd";
 import axios from "axios";
 import Spinner from "../../../Auth/spinner";
@@ -24,7 +24,7 @@ const Form = () => {
     const { segment } = useSpeechContext();
     const classes = useStyles();
     const [formData, setFormData] = useState(initialState);
-    const { addTransaction } = useContext(ExpenseTrackerContext);
+   // const { addTransaction } = useContext(ExpenseTrackerContext);
     const selectedCategories = formData.type === "Income" ? incomeCategories : expenseCategories;
     const [loading, setLoading] = useState(false);
 
@@ -45,7 +45,7 @@ const Form = () => {
             setLoading(true);
             await axios.post('/api/transaction/addtransaction', { ...transaction, UserId: user._id });
             message.success("Transaction added successfully");
-            addTransaction(transaction);
+           // addTransaction(transaction);
             setLoading(false);
         } catch (error) {
             message.error('something went wrong');

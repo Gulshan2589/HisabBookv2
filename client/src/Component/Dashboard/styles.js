@@ -1,30 +1,47 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles((theme) => ({
-  desktop: {
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    },
+  media: {
+    height: 0,
+    paddingTop: '56.25%', // 16:9
   },
-  mobile: {
-    [theme.breakpoints.down('sm')]: {
-      display: 'none',
-    },
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
-  main: {
-    [theme.breakpoints.up('sm')]: {
-      paddingBottom: '5%',
-    },
+  expandOpen: {
+    transform: 'rotate(180deg)',
   },
-  last: {
-    [theme.breakpoints.down('sm')]: {
-      marginBottom: theme.spacing(3),
-      paddingBottom: '200px',
-    },
+  cartContent: {
+    paddingTop: 0,
   },
-  grid: {
-    '& > *': {
-      margin: theme.spacing(2),
-    },
+  divider: {
+    margin: '20px 0',
+  },
+  CardHeader: {
+    color: '#1eb4ff',
+  },
+  subheader: {
+    color: 'black',
+  },
+  root: {
+    backgroundColor: '#E9F1FA',
+  },
+  radioGroup: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: '-10px',
+  },
+  button: {
+    marginTop: '20px',
+    marginRight: '60%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  Typography: {
+    color: '#1eb4ff',
   },
 }));

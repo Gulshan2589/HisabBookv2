@@ -21,7 +21,7 @@ function Navbar() {
                 <ul className="app__navbar-links">
                     <li><NavLink activeClassName="active" to="/">Home</NavLink></li>
                     <li><NavLink activeClassName="active" to="/dashboard">Dashboard</NavLink></li>
-                    <li><NavLink activeClassName="active" to="/about">Pi-Chart</NavLink></li>
+                    {/* <li><NavLink activeClassName="active" to="/about">Pi-Chart</NavLink></li> */}
                     <li><NavLink activeClassName="active" to="/contact">Contact</NavLink></li>
                     <li><NavLink activeClassName="active" to="/facereg">FaceRegister</NavLink></li>
                     <li><NavLink activeClassName="active" to="/facelog">FaceLogin</NavLink></li>
@@ -49,7 +49,7 @@ function Navbar() {
                             <ul className="app__navbar-smallscreen_links">
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/">Home</NavLink></li>
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/dashboard">Dashboard</NavLink></li>
-                                <li onClick={() => setToggleMenu(false)}><NavLink to="/about">Pi-Chart</NavLink></li>
+                                {/* <li onClick={() => setToggleMenu(false)}><NavLink to="/about">Pi-Chart</NavLink></li> */}
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/contact">Contact</NavLink></li>
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/facereg">FaceRegister</NavLink></li>
                                 <li onClick={() => setToggleMenu(false)}><NavLink to="/facelog">FaceLogin</NavLink></li>

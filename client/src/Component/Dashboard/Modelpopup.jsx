@@ -11,7 +11,7 @@ import { Modal, message } from 'antd';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import Spinner from '../Auth/spinner';
-import { ExpenseTrackerContext } from '../../Context/Context';
+//import { ExpenseTrackerContext } from '../../Context/Context';
 import formateDate from '../../Utils/formateDate';
 import { useSpeechContext } from '@speechly/react-client';
 import moment from "moment";
@@ -41,7 +41,7 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
     // Define a constant to determine the categories based on the selected type
     const selectedCategories = formData.type === "Income" ? incomeCategories : expenseCategories;
     const [loading, setLoading] = useState(false);
-    const { addTransaction, balance } = useContext(ExpenseTrackerContext);
+    //const { addTransaction, balance } = useContext(ExpenseTrackerContext);
     
     useEffect(() => {
         if (selectedItemForEdit) {
@@ -84,7 +84,7 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                 await axios.post('/api/transaction/addtransaction', { ...transaction, UserId: user._id });
                 message.success("Transaction added successfully");
                 //adding transcation to context api
-                addTransaction({ ...transaction, amount: Number(formData.amount), id: uuidv4() });
+                //addTransaction({ ...transaction, amount: Number(formData.amount), id: uuidv4() });
                 getTransactions();
             }
             //setting the transactionModal state to false
@@ -164,7 +164,7 @@ const Modelpopup = ({ setShowAddEditTransactionModal, showAddEditTransactionModa
                 <CardHeader className={classes.CardHeader} title="HisaabBook"
                     subheader={<Typography className={classes.subheader}>Powerd by Speechly</Typography>} />
                 <CardContent>
-                    <Typography align="center" variant="h5">Total Balance ₹{balance}</Typography>
+                    {/* <Typography align="center" variant="h5">Total Balance ₹{balance}</Typography> */}
                     <Typography style={{ lineheight: '2em', marginTop: '20px' }}>
                         {/* for additional information */}
 

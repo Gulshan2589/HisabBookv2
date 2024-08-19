@@ -90,8 +90,6 @@ const Facelog = () => {
   };
 
 
-
-
   return (
     <div className="facial-login">
       <div className="camera-container">
